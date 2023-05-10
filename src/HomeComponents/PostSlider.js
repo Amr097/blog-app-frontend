@@ -29,7 +29,7 @@ export default function PostSlider({ postData }) {
         }
         timeRef.current = setTimeout(() => {
           incrementIndex();
-        }, 3000);
+        }, 5000);
         return () => clearTimeout(timeRef.current);
       });
     });
@@ -50,65 +50,63 @@ export default function PostSlider({ postData }) {
   }, [currentIndex, incrementIndex]);
 
   return (
-    <>
-      <section className="highlight-post">
-        <figure>
-          <div className="image-container">
-            <img src={postData[currentIndex].image} />
-            <div className="arrow-container">
-              <svg
-                onClick={decrementIndex}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="arrow left"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                />
-              </svg>
+    <section className="highlight-post">
+      <figure>
+        <div className="image-container">
+          <img src={postData[currentIndex].image} />
+          <div className="arrow-container">
+            <svg
+              onClick={decrementIndex}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="arrow left"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
 
-              <svg
-                onClick={incrementIndex}
-                className="arrow right"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </div>
-            <div className="figure-points">
-              {postData.map((post, postIndex) => (
-                <div
-                  className="bullets"
-                  key={postIndex}
-                  onClick={() => {
-                    ChangeIndex(postIndex);
-                  }}
-                >
-                  •
-                </div>
-              ))}
-            </div>
+            <svg
+              onClick={incrementIndex}
+              className="arrow right"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
           </div>
-          <figcaption className="featured">
-            <h3>Featured</h3>
-            <h1 className="featured-title">{postData[currentIndex].title}</h1>
-            <p className="featured-summary">{postData[currentIndex].summary}</p>
-          </figcaption>
-        </figure>
-      </section>
-    </>
+          <div className="figure-points">
+            {postData.map((post, postIndex) => (
+              <div
+                className="bullets"
+                key={postIndex}
+                onClick={() => {
+                  ChangeIndex(postIndex);
+                }}
+              >
+                •
+              </div>
+            ))}
+          </div>
+        </div>
+        <figcaption className="featured">
+          <h3>Featured</h3>
+          <h1 className="featured-title">{postData[currentIndex].title}</h1>
+          <p className="featured-summary">{postData[currentIndex].summary}</p>
+        </figcaption>
+      </figure>
+    </section>
   );
 }

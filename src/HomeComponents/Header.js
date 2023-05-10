@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  let menuRef = useRef();
+
   const toggleActive = () => {
     setIsOpen((prev) => !prev);
   };
@@ -10,13 +10,14 @@ export default function Header() {
   useEffect(() => {
     const exitDropdown = (event) => {
       const isAttribute = event.target.matches("[data-drop-down]");
-      const isMenuRef = menuRef.current.contains(event.target);
-      if (!isAttribute && !isMenuRef) {
+
+      if (!isAttribute) {
         setIsOpen(false);
+        document.removeEventListener("click", exitDropdown);
       }
     };
-    document.addEventListener("mousedown", exitDropdown);
-  }, []);
+    document.addEventListener("click", exitDropdown);
+  }, [isOpen]);
 
   return (
     <header id="header">
@@ -46,7 +47,7 @@ export default function Header() {
           </a>
         </div>
 
-        <a className="dropdown" onClick={toggleActive} ref={menuRef}>
+        <a className="dropdown" onClick={toggleActive} data-drop-down>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>

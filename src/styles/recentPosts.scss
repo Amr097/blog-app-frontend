@@ -57,3 +57,27 @@ article.recent-content p.recent-info time {
   font-weight: lighter;
   color: rgb(92, 91, 91);
 }
+
+section#recent-posts div.btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 3% 0;
+}
+
+section#recent-posts div button {
+  padding: 8px;
+  width: 6rem;
+  border-radius: 20px;
+  font-weight: bolder;
+
+  background-color: black;
+  cursor: pointer;
+}
+
+section#recent-posts div button a {
+  color: white;
+}
+
+section#recent-posts div button:hover {
+  transform: translateY(-3px);
+}

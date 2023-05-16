@@ -1,0 +1,55 @@
+@import "utilities/variables";
+
+section#all-posts {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 15%;
+  width: 100vw;
+  z-index: -1;
+  padding: 3vw 0;
+  gap: max(1.5vw, 15px);
+  justify-content: center;
+}
+
+div.recent-post-all {
+  display: flex;
+  padding: 0 10vw;
+  gap: 35px;
+  height: max(15vw, 125px);
+}
+div.recent-post-all div.recent-image-all {
+  overflow: hidden;
+}
+div.recent-post-all div.recent-image-all img {
+  width: max(20vw, 180px);
+  height: max(15vw, 125px);
+}
+
+article.recent-content-all {
+  display: flex;
+  flex-direction: column;
+  width: max(35vw, 180px);
+  justify-content: space-between;
+}
+
+article.recent-content-all a h2 {
+  flex: 1 1 1;
+}
+
+article.recent-content-all div.summary-container {
+  flex: 1 1 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+article.recent-content-all p .recent-info-all {
+  flex: 1 1 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+div.top-container {
+  display: flex;
+  flex-direction: column;
+}

@@ -23,14 +23,19 @@ export default function Header() {
     <header id="header">
       <nav className="nav-bar">
         <figure className="logo">
-          <img src="/images/owl (1).png" alt="owl-logo"></img>
+          <a href="/#">
+            <img src="/images/owl (1).png" alt="owl-logo"></img>
+          </a>
+
           <figcaption>
-            404<span>Owl</span>
+            <a href="#">
+              404<span>Owl</span>
+            </a>
           </figcaption>
         </figure>
 
         <div className="mid-nav">
-          <a className="nav-icon" href="#">
+          <a className="nav-icon" href="/#">
             Home
           </a>
           <a className="nav-icon" href="">
@@ -39,18 +44,16 @@ export default function Header() {
         </div>
 
         <div className="end-nav">
-          <a className="nav-icon" href="">
-            Log in
-          </a>
+          <a className="nav-icon">Log in</a>
           <a className="nav-icon sign-up" href="">
             Sign up
           </a>
         </div>
 
         <a className="dropdown" onClick={toggleActive} data-drop-down>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+          <span className="bar" data-drop-down></span>
+          <span className="bar" data-drop-down></span>
+          <span className="bar" data-drop-down></span>
         </a>
       </nav>
       <ul

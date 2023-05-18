@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { format } from "date-fns";
-import { postData } from "@/postsContext";
+import { postData } from "@/store/postsContext";
 import Header from "@/HomeComponents/Header";
+import Login from "@/HomeComponents/HeaderComponents/Login";
 
 export default function SinglePost() {
   const router = useRouter();
@@ -9,6 +10,7 @@ export default function SinglePost() {
   return (
     <>
       <Header />
+      <Login />
       <section id="single-post">
         <div className="post-container">
           <h1>{postData[0].title}</h1>

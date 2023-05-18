@@ -7,34 +7,52 @@ section#all-posts {
   top: 15%;
   width: 100vw;
   z-index: -1;
-  padding: 3vw 0;
-  gap: max(1.5vw, 15px);
+  padding: 3vw 0 2vw 0;
+  gap: max(1.5vw, 14px);
   justify-content: center;
 }
 
 div.recent-post-all {
   display: flex;
   padding: 0 10vw;
-  gap: 35px;
-  height: max(15vw, 125px);
+  gap: 3.5%;
+  height: max(15vw, 100px);
 }
 div.recent-post-all div.recent-image-all {
   overflow: hidden;
 }
 div.recent-post-all div.recent-image-all img {
-  width: max(20vw, 180px);
-  height: max(15vw, 125px);
+  width: max(20vw, 120px);
+  height: max(15vw, 100px);
 }
 
-article.recent-content-all {
+.all-posts-author figcaption a {
+  font-size: max(0.9vw, 8px);
+}
+
+.all-posts-author {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: small;
+}
+
+.all-posts-author .author-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.recent-content-all {
   display: flex;
   flex-direction: column;
-  width: max(35vw, 180px);
+  max-width: 38vw;
   justify-content: space-between;
 }
 
-article.recent-content-all a h2 {
+.top-container h2 {
   flex: 1 1 1;
+  font-size: max(1.5vw, 16px);
 }
 
 article.recent-content-all div.summary-container {
@@ -52,4 +70,65 @@ article.recent-content-all p .recent-info-all {
 div.top-container {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+p.recent-summary-all {
+  font-size: max(1.2vw, 13px);
+}
+
+p.recent-info-all time {
+  font-size: max(0.81vw, 9px);
+  color: rgba(128, 128, 128, 0.703);
+}
+
+.page-index {
+  width: 100vw;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 25px;
+  display: flex;
+  font-size: 15px;
+}
+
+.page-index-arrow {
+  width: 15px;
+  cursor: pointer;
+}
+
+@media (min-width: 1040px) and (max-width: 1450px) {
+  article.recent-content-all {
+    max-width: 50vw;
+  }
+}
+
+@media (max-width: 1040px) {
+  div.recent-post-all {
+    padding: 0 2vw;
+  }
+  p.recent-summary-all {
+    display: none;
+  }
+  article.recent-content-all {
+    width: 65%;
+  }
+
+  article.recent-content-all {
+    justify-content: flex-start;
+    gap: 1vw;
+    max-width: 50vw;
+  }
+  div.top-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+  }
+  .top-container h2 {
+    flex: 1 1 1;
+    font-size: 12px;
+  }
+  .all-posts-author .author-image {
+    width: 20px;
+    height: 20px;
+  }
 }

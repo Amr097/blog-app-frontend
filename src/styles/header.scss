@@ -3,7 +3,6 @@
 #header {
   position: fixed;
   width: 100vw;
-  z-index: 1;
 }
 
 #header .nav-bar {
@@ -49,6 +48,7 @@
   padding: 4.5% 0.7vw;
   transition: all 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
   border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 .nav-icon.sign-up {

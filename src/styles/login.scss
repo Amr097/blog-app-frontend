@@ -1,0 +1,86 @@
+@import "utilities/variables";
+
+div.form.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.form-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  height: 100vh;
+  width: 100vw;
+  color: black;
+  position: relative;
+  background-color: rgba(245, 245, 245, 0.877);
+  z-index: 1;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+
+  .form-container {
+    width: 50vw;
+    height: 96vh;
+    background-color: white;
+    box-shadow: 3px 0px 25px 0px rgba(0, 0, 0, 0.21);
+
+    form.login-form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      .exit-button {
+        align-self: flex-end;
+        overflow: hidden;
+        padding: 10px;
+        cursor: pointer;
+      }
+      .form-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        h1 {
+          font-family: $play-fair;
+        }
+        .btns-container {
+          gap: 10px;
+
+          .login-button {
+            padding: 12px 30px;
+            width: 100%;
+            border-radius: 20px;
+            border: solid 1px grey;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            background-color: white;
+            cursor: pointer;
+
+            svg {
+              height: 20px;
+              width: 20px;
+            }
+            .facebook {
+              fill: rgb(59, 89, 152);
+            }
+            .google {
+              fill: #db4437;
+            }
+          }
+        }
+      }
+    }
+  }
+}

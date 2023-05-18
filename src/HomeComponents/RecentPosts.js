@@ -1,33 +1,10 @@
 import { format } from "date-fns";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function RecentPosts({ postData }) {
   const [renderIndex, setRenderIndex] = useState({ start: 0, end: 5 });
-  // const [wdigetIndex, setWidgetIndex] = useState([]);
 
-  // const widgetIncrement = () => {
-  //   setRenderIndex((prev) => {
-  //     return {
-  //       start: prev.end === postData.length - 1 ? prev.start : prev.start + 6,
-  //       end: prev.end === postData.length - 1 ? prev.end : prev.end + 6,
-  //     };
-  //   });
-  // };
-  // const widgetDecrement = () => {
-  //   setRenderIndex((prev) => {
-  //     return prev.start === 0
-  //       ? {
-  //           start: prev.start,
-  //           end: prev.end,
-  //         }
-  //       : {
-  //           start: prev.start - 6,
-  //           end: prev.end - 6,
-  //         };
-  //     console.log(renderIndex.start);
-  //   });
-  // };
   return (
     <section id="recent-posts">
       <h3 className="recent-section-title">Recent Owl Posts</h3>
@@ -73,14 +50,7 @@ export default function RecentPosts({ postData }) {
             )
           : null}
       </div>
-      {/* <div>
-        <a className="widget" onClick={widgetIncrement}>
-          &gt;
-        </a>
-        <a className="widget" onClick={widgetDecrement}>
-          back
-        </a>
-      </div> */}
+
       <div className="btn-container">
         <button>
           <a href="/Posts/AllPosts">View More</a>

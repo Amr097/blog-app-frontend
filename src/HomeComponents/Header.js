@@ -7,6 +7,12 @@ export default function Header() {
     setIsOpen((prev) => !prev);
   };
 
+  const addVisible = (event) => {
+    event.preventDefault();
+    const form = document.querySelector(".form");
+    form.classList.add("visible");
+  };
+
   useEffect(() => {
     const exitDropdown = (event) => {
       const isAttribute = event.target.matches("[data-drop-down]");
@@ -44,7 +50,9 @@ export default function Header() {
         </div>
 
         <div className="end-nav">
-          <a className="nav-icon">Log in</a>
+          <a className="nav-icon" onClick={addVisible}>
+            Log in
+          </a>
           <a className="nav-icon sign-up" href="">
             Sign up
           </a>
@@ -66,8 +74,8 @@ export default function Header() {
         <li data-drop-down>
           <a>Sign up</a>
         </li>
-        <li data-drop-down>
-          <a>Log in</a>
+        <li onClick={addVisible} data-drop-down>
+          <a onClick={addVisible}>Log in</a>
         </li>
         <li data-drop-down>
           <a>About us</a>

@@ -1,106 +1,86 @@
 import { format } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { RecentPostData } from "@/store/postsContext";
+import { RecentPostData } from "@/store/data/postsContext";
 import Header from "@/HomeComponents/Header";
-import Login from "@/HomeComponents/HeaderComponents/Login";
+import Login from "@/HomeComponents/HeaderComponents/AccessBoard";
+import {
+  incrementIndex,
+  DecrementIndex,
+} from "@/store/functions/AllPostsFunctions";
 
 export default function AllPosts() {
-  const [renderIndex, setRenderIndex] = useState({ start: 0, end: 20 });
-  const [pageIndex, setPageIndex] = useState(1);
+  // const [renderIndex, setRenderIndex] = useState({ start: 0, end: 9 });
+  // const [pageIndex, setPageIndex] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const index = window.localStorage.getItem("MY_APP_index");
-    setPageIndex(parseInt(index) ? parseInt(index) : 1);
+  // useEffect(() => {
+  //   const index = window.localStorage.getItem("MY_APP_index");
+  //   setPageIndex(parseInt(index) ? parseInt(index) : 1);
 
-    setRenderIndex((prev) => {
-      for (let i = 1; i < index; i++) {
-        prev.start = prev.start + 20;
-        prev.end = prev.end + 20;
-      }
+  //   setRenderIndex((prev) => {
+  //     for (let i = 1; i < index; i++) {
+  //       prev.start = prev.start + 9;
+  //       prev.end = prev.end + 9;
+  //     }
 
-      return { start: prev.start, end: prev.end };
-    });
-  }, []);
+  //     return { start: prev.start, end: prev.end };
+  //   });
+  // }, []);
 
-  const incrementIndex = () => {
-    if (pageIndex < Math.ceil(RecentPostData.length / 20)) {
-      setRenderIndex((prev) => {
-        return {
-          start: prev.start + 20,
-          end: prev.end + 20,
-        };
-      });
-      setPageIndex((prev) => {
-        window.localStorage.setItem("MY_APP_index", prev + 1);
-        return +prev + 1;
-      });
-    }
-  };
-  const DecrementIndex = () => {
-    if (pageIndex > 1) {
-      setRenderIndex((prev) => {
-        return {
-          start: prev.start - 20,
-          end: prev.end - 20,
-        };
-      });
-      setPageIndex((prev) => {
-        window.localStorage.setItem("MY_APP_index", prev - 1);
-        return prev - 1;
-      });
-    }
-  };
   return (
     <>
-      <Header link="/" />
+      <Header link="/" isOpen={isOpen} setIsOpen={setIsOpen} />
       <Login />
       <section id="all-posts">
         {RecentPostData.length > 0
-          ? RecentPostData.map(
-              (post, index) =>
-                index >= renderIndex.start &&
-                index <= renderIndex.end && (
-                  <div key={index} className="recent-post-all">
-                    <div className="recent-image-all">
-                      <Link
-                        href={{
-                          pathname: `/Posts/${post.image.slice(8)}`,
-                          query: RecentPostData,
-                        }}
-                      >
-                        <img src={post.image} alt="" />
-                      </Link>
-                    </div>
+          ? RecentPostData.map((post, index) => (
+              <div key={index} className="recent-post-all">
+                <div className="recent-image-all">
+                  <Link
+                    href={{
+                      pathname: `/Posts/${post.image.slice(8)}`,
+                      query: RecentPostData,
+                    }}
+                  >
+                    <img src={post.image} alt="" />
+                  </Link>
+                </div>
 
-                    <article className="recent-content-all">
-                      <div className="top-container">
-                        <figure className="all-posts-author">
-                          <img className="author-image" src={post.image} />
-                          <figcaption>
-                            {" "}
-                            <a className="recent-author">Hedwig Potter</a>{" "}
-                          </figcaption>
-                        </figure>
-
-                        <h2>{post.title}</h2>
-
-                        <p className="recent-summary-all">{post.summary}</p>
-                      </div>
-                      <p className="recent-info-all">
+                <article className="recent-content-all">
+                  <div className="top-container">
+                    <figure className="all-posts-author">
+                      <img className="author-image" src={post.image} />
+                      <figcaption>
                         {" "}
-                        <time suppressHydrationWarning>
-                          {format(new Date(), "MMM d, yyy HH:mm")}
-                        </time>
-                      </p>
-                    </article>
+                        <a className="recent-author">Hedwig Potter</a>{" "}
+                      </figcaption>
+                    </figure>
+
+                    <h2>{post.title}</h2>
+
+                    <p className="recent-summary-all">{post.summary}</p>
                   </div>
-                )
-            )
+                  <p className="recent-info-all">
+                    {" "}
+                    <time suppressHydrationWarning>
+                      {format(new Date(), "MMM d, yyy HH:mm")}
+                    </time>
+                  </p>
+                </article>
+              </div>
+            ))
           : null}
-        <div className="page-index">
+        {/* <div className="page-index">
           <svg
-            onClick={DecrementIndex}
+            onClick={() =>
+              DecrementIndex(
+                pageIndex,
+                setRenderIndex,
+                setPageIndex,
+                RecentPostData
+              )
+            }
             className="page-index-arrow"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -116,10 +96,18 @@ export default function AllPosts() {
           </svg>
 
           <p>
-            {pageIndex}/{Math.ceil(RecentPostData.length / 20)}
+            {pageIndex}/{Math.ceil(RecentPostData.length / 9)}
           </p>
           <svg
-            onClick={incrementIndex}
+            onClick={(event) =>
+              incrementIndex(
+                pageIndex,
+                setRenderIndex,
+                setPageIndex,
+                RecentPostData,
+                event
+              )
+            }
             className="page-index-arrow"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -133,7 +121,7 @@ export default function AllPosts() {
               d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
             />
           </svg>
-        </div>
+        </div> */}
       </section>
     </>
   );

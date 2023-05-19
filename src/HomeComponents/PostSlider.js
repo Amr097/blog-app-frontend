@@ -1,78 +1,14 @@
 import { useEffect, useState, useRef } from "react";
-
-let figureValue;
+import {
+  TimerincrementIndex,
+  incrementIndex,
+  decrementIndex,
+  bulletClick,
+} from "@/store/functions/postSliderFunctions";
 
 export default function PostSlider({ postData }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const timeRef = useRef(null);
-
-  const TimerincrementIndex = () => {
-    let figureIndex = 0;
-    const figure = document.querySelector("section.highlight-post figure");
-    figure ? (figure.style.transition = "none") : null;
-    if (currentIndex === postData.length - 1) {
-      return;
-    } else {
-      figureValue = 0;
-      for (let i = 0; i <= currentIndex; i++) {
-        if (figure) {
-          figure.style.transform = `translateX(${(figureValue =
-            figureValue - 100)}vw)`;
-          figureIndex++;
-        }
-      }
-
-      setCurrentIndex(figureIndex);
-    }
-  };
-
-  const incrementIndex = () => {
-    let figureIndex = 0;
-    const figure = document.querySelector("section.highlight-post figure");
-    figure ? (figure.style.transition = "all 0.4s ease-in-out") : null;
-    if (currentIndex === postData.length - 1) {
-      return;
-    } else {
-      figureValue = 0;
-      for (let i = 0; i <= currentIndex; i++) {
-        if (figure) {
-          figure.style.transform = `translateX(${(figureValue =
-            figureValue - 100)}vw)`;
-
-          figureIndex++;
-        }
-      }
-
-      setCurrentIndex(figureIndex);
-    }
-  };
-  const decrementIndex = () => {
-    const figure = document.querySelector("section.highlight-post figure");
-    figure.style.transition = "all 0.4s ease-in-out";
-    if (currentIndex === 0) {
-      return;
-    } else {
-      let figureIndex = currentIndex;
-
-      figure
-        ? (figure.style.transform = `translateX(${(figureValue =
-            figureValue + 100)}vw)`)
-        : null;
-      figureIndex--;
-
-      setCurrentIndex(figureIndex);
-    }
-  };
-
-  const bulletClick = (index) => {
-    const figure = document.querySelector("section.highlight-post figure");
-    figure.style.transition = "all 0.4s ease-in-out";
-    setCurrentIndex(index);
-    figure
-      ? (figure.style.transform = `translateX(${(figureValue =
-          -index * 100)}vw)`)
-      : null;
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries, opts) => {
@@ -80,21 +16,18 @@ export default function PostSlider({ postData }) {
         if (timeRef.current) {
           clearTimeout(timeRef.current);
         }
-        if (currentIndex === postData.length - 1) {
-          return;
-        } else {
-          timeRef.current = setTimeout(() => {
-            setCurrentIndex(0);
-            TimerincrementIndex();
-          }, 5000);
-          return () => clearTimeout(timeRef.current);
-        }
+
+        timeRef.current = setTimeout(() => {
+          setCurrentIndex(0);
+          TimerincrementIndex(currentIndex, setCurrentIndex, postData);
+        }, 5000);
+        return () => clearTimeout(timeRef.current);
       });
     });
 
     observer.observe(document.querySelector("section.highlight-post"));
 
-    //   ////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
 
     const bullets = document.querySelectorAll(".bullets");
     bullets.forEach((bullet, index) => {
@@ -121,7 +54,7 @@ export default function PostSlider({ postData }) {
                 {postData.map((post, postIndex) => (
                   <div
                     onClick={() => {
-                      bulletClick(postIndex);
+                      bulletClick(postIndex, setCurrentIndex);
                     }}
                     className="bullets"
                     key={postIndex}
@@ -141,7 +74,9 @@ export default function PostSlider({ postData }) {
       </figure>
       <div className="arrow-container">
         <svg
-          onClick={decrementIndex}
+          onClick={() =>
+            decrementIndex(currentIndex, setCurrentIndex, postData)
+          }
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -157,7 +92,9 @@ export default function PostSlider({ postData }) {
         </svg>
 
         <svg
-          onClick={incrementIndex}
+          onClick={() =>
+            incrementIndex(currentIndex, setCurrentIndex, postData)
+          }
           className="arrow right"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

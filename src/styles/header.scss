@@ -1,10 +1,10 @@
 @import "utilities/variables";
 
 #header {
-  position: fixed;
   width: 100vw;
+  position: fixed;
+  z-index: 1;
 }
-
 #header .nav-bar {
   display: flex;
   justify-content: space-between;
@@ -76,7 +76,10 @@
   gap: 5px;
   width: 30px;
   height: 55px;
-  z-index: 5;
+}
+
+a.exit {
+  display: none;
 }
 
 .dropdown span.bar {
@@ -92,11 +95,13 @@ ul.dropdown-content {
   display: flex;
   flex-direction: column;
   text-align: center;
+  position: relative;
   padding: 3% 2% 0 2%;
   line-height: 2;
   pointer-events: none;
   transform: translateY(-10px);
   transition: all 150ms ease-in-out;
+  width: 100vw;
 }
 li a {
   font-family: $ubuntu;
@@ -111,12 +116,23 @@ li a {
     display: flex;
   }
 
+  a.exit {
+    display: inline;
+  }
+  a.exit:hover {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #000000;
+    padding: 2.5px;
+    font-size: small;
+  }
   ul.dropdown-content.active {
     opacity: 1;
     transform: translateY(0px);
     cursor: pointer;
     pointer-events: all;
     background-color: #ffffff;
+    z-index: 1;
   }
 
   .dropdown-content.active li:hover {

@@ -1,29 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
+import MenuContext from "@/store/MenuContext";
+import { toggleActive, addVisible } from "@/store/functions/headerFunctions";
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleActive = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const addVisible = (event) => {
-    event.preventDefault();
-    const form = document.querySelector(".form");
-    form.classList.add("visible");
-  };
-
-  useEffect(() => {
-    const exitDropdown = (event) => {
-      const isAttribute = event.target.matches("[data-drop-down]");
-
-      if (!isAttribute) {
-        setIsOpen(false);
-        document.removeEventListener("click", exitDropdown);
-      }
-    };
-    document.addEventListener("click", exitDropdown);
-  }, [isOpen]);
+export default function Header({ isOpen, setIsOpen }) {
+  const menuTypeHandler = useContext(MenuContext);
 
   return (
     <header id="header">
@@ -34,7 +14,7 @@ export default function Header() {
           </a>
 
           <figcaption>
-            <a href="#">
+            <a href="/#">
               404<span>Owl</span>
             </a>
           </figcaption>
@@ -50,19 +30,35 @@ export default function Header() {
         </div>
 
         <div className="end-nav">
-          <a className="nav-icon" onClick={addVisible}>
+          <a
+            className="nav-icon"
+            onClick={(event) => addVisible(event, "Login", menuTypeHandler)}
+          >
             Log in
           </a>
-          <a className="nav-icon sign-up" href="">
+          <a
+            onClick={(event) => addVisible(event, "Sign-up", menuTypeHandler)}
+            className="nav-icon sign-up"
+          >
             Sign up
           </a>
         </div>
 
-        <a className="dropdown" onClick={toggleActive} data-drop-down>
-          <span className="bar" data-drop-down></span>
-          <span className="bar" data-drop-down></span>
-          <span className="bar" data-drop-down></span>
-        </a>
+        {isOpen ? (
+          <a onClick={() => toggleActive(setIsOpen, isOpen)} className="exit">
+            X
+          </a>
+        ) : (
+          <a
+            className="dropdown"
+            onClick={() => toggleActive(setIsOpen, isOpen)}
+            data-drop-down
+          >
+            <span className="bar" data-drop-down></span>
+            <span className="bar" data-drop-down></span>
+            <span className="bar" data-drop-down></span>
+          </a>
+        )}
       </nav>
       <ul
         data-drop-down
@@ -72,10 +68,17 @@ export default function Header() {
           <a>Home</a>
         </li>
         <li data-drop-down>
-          <a>Sign up</a>
+          <a onClick={(event) => addVisible(event, "Sign-up", menuTypeHandler)}>
+            Sign up
+          </a>
         </li>
-        <li onClick={addVisible} data-drop-down>
-          <a onClick={addVisible}>Log in</a>
+        <li
+          onClick={(event) => addVisible(event, "Login", menuTypeHandler)}
+          data-drop-down
+        >
+          <a onClick={(event) => addVisible(event, "Login", menuTypeHandler)}>
+            Log in
+          </a>
         </li>
         <li data-drop-down>
           <a>About us</a>

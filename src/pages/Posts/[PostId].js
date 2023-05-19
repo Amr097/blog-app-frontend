@@ -1,15 +1,17 @@
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
-import { postData } from "@/store/postsContext";
+import { postData } from "@/store/data/postsContext";
 import Header from "@/HomeComponents/Header";
-import Login from "@/HomeComponents/HeaderComponents/Login";
+import Login from "@/HomeComponents/HeaderComponents/AccessBoard";
 
 export default function SinglePost() {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   console.log(postData);
   return (
     <>
-      <Header />
+      <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <Login />
       <section id="single-post">
         <div className="post-container">

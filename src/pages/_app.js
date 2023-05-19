@@ -4,8 +4,13 @@ import "@/styles/homePage.scss";
 import "@/styles/recentPosts.scss";
 import "@/styles/singlePost.scss";
 import "@/styles/AllPosts.scss";
-import "@/styles/login.scss";
+import "@/styles/accessBoard.scss";
+import { MenuContextProvider } from "@/store/MenuContext";
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <MenuContextProvider>
+      <Component {...pageProps} />
+    </MenuContextProvider>
+  );
 }

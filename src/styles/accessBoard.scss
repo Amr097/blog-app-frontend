@@ -16,7 +16,6 @@ div.form.visible {
   height: 100vh;
   width: 100vw;
   color: black;
-  position: relative;
   background-color: rgba(245, 245, 245, 0.877);
   z-index: 1;
   position: fixed;
@@ -49,6 +48,14 @@ div.form.visible {
         height: 100%;
         display: flex;
         justify-content: space-around;
+        p a {
+          cursor: pointer;
+        }
+
+        p a:hover {
+          color: rgb(11, 128, 11);
+        }
+
         h1 {
           font-family: $play-fair;
         }

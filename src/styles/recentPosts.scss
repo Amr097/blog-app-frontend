@@ -28,11 +28,20 @@ div.recent-post div.recent-image img {
   border-radius: 15px;
 }
 
+div.recent-post div.recent-image a {
+  display: block;
+  position: relative;
+}
+
 div.recent-post article.recent-content {
   display: flex;
   flex-direction: column;
   padding: 0.8vh 0;
   gap: 1.1vh;
+}
+
+div.recent-post article.recent-content a p {
+  font-weight: lighter;
 }
 
 article.recent-content h2 {
@@ -76,6 +85,9 @@ section#recent-posts div button {
 
 section#recent-posts div button a {
   color: white;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 section#recent-posts div button:hover {

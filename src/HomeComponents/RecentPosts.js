@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function RecentPosts({ postData }) {
   const [renderIndex, setRenderIndex] = useState({ start: 0, end: 5 });
@@ -34,9 +34,9 @@ export default function RecentPosts({ postData }) {
                         }}
                       >
                         <h2>{post.title}</h2>
-                      </Link>
 
-                      <p className="recent-summary">{post.summary}</p>
+                        <p className="recent-summary">{post.summary}</p>
+                      </Link>
                       <p className="recent-info">
                         {" "}
                         <a className="recent-author">By Hedwig Potter</a>{" "}

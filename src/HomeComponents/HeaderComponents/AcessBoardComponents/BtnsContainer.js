@@ -41,7 +41,7 @@ export function BtnsContainer({ currentMenu }) {
         className="login-button"
         onClick={(event) => {
           event.preventDefault();
-          menuTypeHandler.changeMenu(
+          menuTypeHandler.menuType.changeMenu(
             currentMenu === "Login" ? "email-login" : "email-signup"
           );
         }}

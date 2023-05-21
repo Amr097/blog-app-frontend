@@ -12,12 +12,39 @@ const menuHandler = (event) => {
   }
 };
 
-const emailSubmitHandler = (event, usernameRef, passwordRef) => {
-  event.preventDefault();
-  usernameValue = usernameRef.current.value;
-  passwordValue = passwordRef.current.value;
-  console.log(`${usernameValue} ${passwordValue}`);
-  console.log("works");
+const emailSubmitHandler = async (
+  event,
+  usernameRef,
+  passwordRef,
+  emailCredentialsHandler
+) => {
+  const usernameValue = usernameRef.current.value;
+  const passwordValue = passwordRef.current.value;
+
+  await emailCredentialsHandler.userInfoHandler({
+    username: usernameValue,
+    password: passwordValue,
+  });
 };
 
-export { closeMenu, menuHandler, emailSubmitHandler };
+const submitFormHandler = (event, emailCredentialsHandler, currentMenu) => {
+  event.preventDefault();
+  console.log(emailCredentialsHandler);
+  console.log(currentMenu);
+  const reqBody = {
+    username: emailCredentialsHandler.username,
+    password: emailCredentialsHandler.password,
+    type: currentMenu,
+  };
+  fetch("/api/userAuth", {
+    method: "POST",
+    body: JSON.stringify(reqBody),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+};
+
+export { closeMenu, menuHandler, emailSubmitHandler, submitFormHandler };

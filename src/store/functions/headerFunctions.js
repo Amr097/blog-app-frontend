@@ -5,7 +5,7 @@ const toggleActive = (setIsOpen, isOpen) => {
 
 const addVisible = (event, type, context) => {
   event.preventDefault();
-  context.changeMenu(type);
+  context.menuType.changeMenu(type);
 
   const form = document.querySelector(".form");
   form.classList.add("visible");

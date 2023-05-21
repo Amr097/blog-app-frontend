@@ -5,6 +5,7 @@ import { emailSubmitHandler } from "@/store/functions/AcessBoardFunctions";
 
 export default function EmailForm({ currentMenu }) {
   const menuTypeHandler = useContext(MenuContext);
+  const emailCredentialsHandler = menuTypeHandler.emailCredentials;
   const usernameRef = useRef("");
   const passwordRef = useRef("");
 
@@ -34,10 +35,14 @@ export default function EmailForm({ currentMenu }) {
       </div>
       <button
         login-menu="true"
-        form="access-board"
         type="submit"
-        onSubmit={(event) =>
-          emailSubmitHandler(event, usernameRef, passwordRef)
+        onClick={(event) =>
+          emailSubmitHandler(
+            event,
+            usernameRef,
+            passwordRef,
+            emailCredentialsHandler
+          )
         }
       >
         {(currentMenu === "email-login" && "Login") ||
@@ -52,7 +57,7 @@ export default function EmailForm({ currentMenu }) {
         <a
           login-menu="true"
           onClick={() => {
-            menuTypeHandler.changeMenu(
+            menuTypeHandler.menuType.changeMenu(
               currentMenu === "email-login" ? "Login" : "Sign-up"
             );
           }}

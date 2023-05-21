@@ -72,10 +72,7 @@ export default function Header({ isOpen, setIsOpen }) {
             Sign up
           </a>
         </li>
-        <li
-          onClick={(event) => addVisible(event, "Login", menuTypeHandler)}
-          data-drop-down
-        >
+        <li data-drop-down>
           <a onClick={(event) => addVisible(event, "Login", menuTypeHandler)}>
             Log in
           </a>

@@ -11,4 +11,9 @@ const addVisible = (event, type, context) => {
   form.classList.add("visible");
 };
 
-export { toggleActive, addVisible };
+const logout = (setChecker) => {
+  localStorage.clear();
+  setChecker(false);
+};
+
+export { toggleActive, addVisible, logout };

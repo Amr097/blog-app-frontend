@@ -14,6 +14,7 @@ export default function AccessBoard() {
   const currentMenu = menuTypeHandler.menuType.menu.toString();
   const emailCredentialsHandler =
     menuTypeHandler.emailCredentials.userInfoValues;
+  const authenticateUser = menuTypeHandler.authenticateUser;
 
   return (
     <div className="form form-center" onClick={(event) => menuHandler(event)}>
@@ -23,7 +24,12 @@ export default function AccessBoard() {
           login-menu="true"
           id="access-board"
           onSubmit={(event) =>
-            submitFormHandler(event, emailCredentialsHandler, currentMenu)
+            submitFormHandler(
+              event,
+              authenticateUser,
+              currentMenu,
+              emailCredentialsHandler
+            )
           }
         >
           <a className="exit-button" onClick={(event) => closeMenu(event)}>

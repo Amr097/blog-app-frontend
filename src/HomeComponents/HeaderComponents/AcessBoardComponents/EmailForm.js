@@ -1,11 +1,14 @@
 import { useContext, useRef } from "react";
 import MenuContext from "@/store/MenuContext";
 import navFormData from "@/store/data/formData";
-import { emailSubmitHandler } from "@/store/functions/AcessBoardFunctions";
-
+import {
+  closeMenu,
+  submitFormHandler,
+} from "@/store/functions/AcessBoardFunctions";
 export default function EmailForm({ currentMenu }) {
   const menuTypeHandler = useContext(MenuContext);
   const emailCredentialsHandler = menuTypeHandler.emailCredentials;
+
   const usernameRef = useRef("");
   const passwordRef = useRef("");
 
@@ -33,18 +36,7 @@ export default function EmailForm({ currentMenu }) {
         />
         <label login-menu="true">Password</label>
       </div>
-      <button
-        login-menu="true"
-        type="submit"
-        onClick={(event) =>
-          emailSubmitHandler(
-            event,
-            usernameRef,
-            passwordRef,
-            emailCredentialsHandler
-          )
-        }
-      >
+      <button login-menu="true" type="submit">
         {(currentMenu === "email-login" && "Login") ||
           (currentMenu === "email-signup" && "Sign up")}
       </button>

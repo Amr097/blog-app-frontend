@@ -27,24 +27,26 @@ const emailSubmitHandler = async (
   });
 };
 
-const submitFormHandler = (event, emailCredentialsHandler, currentMenu) => {
-  event.preventDefault();
-  console.log(emailCredentialsHandler);
-  console.log(currentMenu);
-  const reqBody = {
-    username: emailCredentialsHandler.username,
-    password: emailCredentialsHandler.password,
-    type: currentMenu,
-  };
-  fetch("/api/userAuth", {
-    method: "POST",
-    body: JSON.stringify(reqBody),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+const submitFormHandler = (event, authenticateUser) => {
+  // console.log(emailCredentialsHandler);
+  // console.log(currentMenu);
+  // const reqBody = {
+  //   username: emailCredentialsHandler.username,
+  //   password: emailCredentialsHandler.password,
+  //   type: currentMenu,
+  // };
+  // fetch("/api/auth/signup", {
+  //   method: "POST",
+  //   body: JSON.stringify(reqBody),
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => console.log(data));
+  closeMenu();
+  authenticateUser.authenticationHandler(true);
+  const authenticated = window.localStorage.setItem("IS_AUTHENTICATED", true);
 };
 
 export { closeMenu, menuHandler, emailSubmitHandler, submitFormHandler };

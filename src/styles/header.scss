@@ -2,8 +2,8 @@
 
 #header {
   width: 100vw;
-  position: fixed;
   z-index: 1;
+  position: absolute;
 }
 #header .nav-bar {
   display: flex;
@@ -42,6 +42,8 @@
 }
 
 .nav-icon {
+  display: flex;
+  align-items: center;
   font-family: $ubuntu;
   font-size: 0.93rem;
   font-weight: 600;
@@ -51,12 +53,34 @@
   cursor: pointer;
 }
 
+.nav-icon.write {
+  gap: 5px;
+  color: #000000;
+  font-family: $ubuntu;
+  font-size: 0.93rem;
+  font-weight: 600;
+  padding: 4.5% 0.7vw;
+  transition: all 0.3s linear;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.nav-icon.write svg {
+  height: 22px;
+}
+
 .nav-icon.sign-up {
   color: white;
   background-color: black;
 }
-
-.nav-icon:hover {
+.nav-icon.write:hover {
+  color: rgb(35, 134, 53);
+}
+.nav-icon.logout:hover {
+  color: rgb(109, 106, 106);
+}
+.mid-nav .nav-icon:hover,
+.end-nav.before .nav-icon:hover {
   box-shadow: inset 100px 0 0 0 #000000;
   color: white;
 }

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import { Editor } from "@/store/functions/CreatePostFunctions";
+import { Editor, onSubmit } from "@/store/functions/CreatePostFunctions";
 import "react-quill/dist/quill.snow.css";
 
 export default function CreatePost() {
@@ -28,7 +28,10 @@ export default function CreatePost() {
   };
   return (
     <section>
-      <form className="post">
+      <form
+        className="post"
+        onSubmit={(event) => onSubmit(event, post, content, files, setRedirect)}
+      >
         <input
           onChange={postData}
           type="text"

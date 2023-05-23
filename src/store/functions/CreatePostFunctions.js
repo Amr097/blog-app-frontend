@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
+import uploadToS3 from "./uploadToS3";
 
 export function Editor({ value, onChange }) {
   const modules = {
@@ -40,4 +41,25 @@ export function Editor({ value, onChange }) {
       formats={formats}
     />
   );
+}
+
+export function onSubmit(event, post, content, files, setRedirect) {
+  event.preventDefault();
+  //console.log(post, content, files, setRedirect);
+
+  const reqBody = {
+    post: post,
+    content: content,
+  };
+  fetch("/api/savepost", {
+    method: "POST",
+    body: JSON.stringify(reqBody),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+
+  uploadToS3("", "", files);
 }

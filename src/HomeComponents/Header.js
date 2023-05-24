@@ -10,7 +10,7 @@ export default function Header({ isOpen, setIsOpen }) {
   const menuTypeHandler = useContext(MenuContext);
   const isAuthenticated = menuTypeHandler.authenticateUser.value;
   const [checker, setChecker] = useState(isAuthenticated);
-
+  console.log(checker);
   useEffect(() => {
     const authenticated = window.localStorage.getItem("IS_AUTHENTICATED");
     setChecker(authenticated ? authenticated : false);
@@ -106,17 +106,23 @@ export default function Header({ isOpen, setIsOpen }) {
           data-drop-down
           className={"dropdown-content " + (isOpen ? "active" : "")}
         >
-          <li data-drop-down>
-            <a>Home</a>
+          <li href="/#" data-drop-down>
+            <a href="/#">Home</a>
           </li>
-          <li data-drop-down>
+          <li
+            onClick={(event) => addVisible(event, "Sign-up", menuTypeHandler)}
+            data-drop-down
+          >
             <a
               onClick={(event) => addVisible(event, "Sign-up", menuTypeHandler)}
             >
               Sign up
             </a>
           </li>
-          <li data-drop-down>
+          <li
+            onClick={(event) => addVisible(event, "Login", menuTypeHandler)}
+            data-drop-down
+          >
             <a onClick={(event) => addVisible(event, "Login", menuTypeHandler)}>
               Log in
             </a>
@@ -132,14 +138,14 @@ export default function Header({ isOpen, setIsOpen }) {
           data-drop-down
           className={"dropdown-content " + (isOpen ? "active" : "")}
         >
-          <li data-drop-down>
-            <a>Home</a>
+          <li href="/#" data-drop-down>
+            <a href="/#">Home</a>
           </li>
           <li data-drop-down>
-            <a>Write</a>
+            <a href="/create-post">Write</a>
           </li>
-          <li data-drop-down>
-            <a>Log out</a>
+          <li onClick={(event) => logout(setChecker)} data-drop-down>
+            <a onClick={(event) => logout(setChecker)}>Log out</a>
           </li>
           <li data-drop-down>
             <a>About us</a>

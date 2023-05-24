@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import MenuContext from "@/store/MenuContext";
 import navFormData from "@/store/data/formData";
 import {
@@ -17,26 +18,34 @@ export default function AccessBoard() {
   const authenticateUser = menuTypeHandler.authenticateUser;
 
   return (
-    <div className="form form-center" onClick={(event) => menuHandler(event)}>
+    <div
+      className="form form-center"
+      onClick={(event) => {
+        menuHandler(event);
+      }}
+    >
       <div className="form-container form-center" login-menu="true">
         <form
           className="login-form"
           login-menu="true"
           id="access-board"
-          onSubmit={(event) =>
-            submitFormHandler(
-              event,
-              authenticateUser,
-              currentMenu,
-              emailCredentialsHandler
-            )
-          }
+          onSubmit={(event) => {
+            submitFormHandler(event, authenticateUser);
+          }}
         >
           <a className="exit-button" onClick={(event) => closeMenu(event)}>
             X
           </a>
           <div login-menu="true" className="form-content form-center">
-            <h1 login-menu="true">Become an Owl.</h1>
+            <h1 login-menu="true">
+              {" "}
+              {(currentMenu === "Login" && navFormData.login.title) ||
+                (currentMenu === "Sign-up" && navFormData.signup.title) ||
+                (currentMenu === "email-login" &&
+                  navFormData.emailLogin.title) ||
+                (currentMenu === "email-signup" &&
+                  navFormData.emailSignup.title)}{" "}
+            </h1>
 
             {(currentMenu === "email-login" && (
               <EmailForm currentMenu={currentMenu} />

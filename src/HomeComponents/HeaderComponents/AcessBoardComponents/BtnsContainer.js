@@ -1,13 +1,20 @@
 import { useContext } from "react";
 import MenuContext from "@/store/MenuContext";
 import navFormData from "@/store/data/formData";
+import { useRouter } from "next/router";
 
 export function BtnsContainer({ currentMenu }) {
   const menuTypeHandler = useContext(MenuContext);
-
+  const router = useRouter();
   return (
     <div login-menu="true" className="btns-container form-center">
-      <button login-menu="true" className="login-button">
+      <button
+        type="submit"
+        form="access-board"
+        login-menu="true"
+        className="login-button"
+        onClick={() => router.push("/")}
+      >
         <svg
           login-menu="true"
           className="facebook"
@@ -20,7 +27,12 @@ export function BtnsContainer({ currentMenu }) {
           (currentMenu === "Sign-up" && "Sign up")}{" "}
         with Facebook
       </button>
-      <button login-menu="true" className="login-button">
+      <button
+        type="submit"
+        login-menu="true"
+        className="login-button"
+        onClick={() => router.push("/")}
+      >
         <svg
           login-menu="true"
           className="google"

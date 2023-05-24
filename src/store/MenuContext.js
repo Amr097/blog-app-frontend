@@ -1,4 +1,3 @@
-import { Boogaloo } from "next/font/google";
 import { createContext, useState } from "react";
 
 const MenuContext = createContext({

@@ -43,13 +43,15 @@ export function Editor({ value, onChange }) {
   );
 }
 
-export function onSubmit(event, post, content, files, setRedirect) {
+export async function onSubmit(event, post, content, files, setRedirect) {
   event.preventDefault();
-  //console.log(post, content, files, setRedirect);
 
+  const image = await uploadToS3("", "", files);
+  console.log(image);
   const reqBody = {
     post: post,
     content: content,
+    image: image,
   };
   fetch("/api/savepost", {
     method: "POST",
@@ -60,6 +62,4 @@ export function onSubmit(event, post, content, files, setRedirect) {
   })
     .then((response) => response.json())
     .then((data) => console.log(data));
-
-  uploadToS3("", "", files);
 }

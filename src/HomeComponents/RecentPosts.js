@@ -1,16 +1,18 @@
 import { format } from "date-fns";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import postss from "@/store/data/postFile.json";
 
-export default function RecentPosts({ postData }) {
+export default function RecentPosts({ postData, postFile }) {
   const [renderIndex, setRenderIndex] = useState({ start: 0, end: 5 });
-
+  const [posts, setPosts] = useState({});
+  console.log(postss);
   return (
     <section id="recent-posts">
       <h3 className="recent-section-title">Recent Owl Posts</h3>
       <div className="recent-post-container">
-        {postData.length > 0
-          ? postData.map(
+        {postss.length > 0
+          ? postss.map(
               (post, index) =>
                 index >= renderIndex.start &&
                 index <= renderIndex.end && (
@@ -19,7 +21,7 @@ export default function RecentPosts({ postData }) {
                       <Link
                         href={{
                           pathname: `/Posts/${post.image.slice(8)}`,
-                          query: postData,
+                          query: postss,
                         }}
                       >
                         <img src={post.image} alt="" />
@@ -30,7 +32,7 @@ export default function RecentPosts({ postData }) {
                       <Link
                         href={{
                           pathname: `/Posts/${post.image.slice(8)}`,
-                          query: postData,
+                          query: postss,
                         }}
                       >
                         <h2>{post.title}</h2>

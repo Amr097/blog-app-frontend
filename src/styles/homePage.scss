@@ -33,9 +33,8 @@ div.image-container {
 }
 
 section.highlight-post figure img {
-  max-width: 90vw;
-  min-width: 50vw;
-  max-height: 80vh;
+  width: 50vw;
+  height: 80vh;
   z-index: -1;
   border-radius: 20px;
   transition: 0;
@@ -85,18 +84,27 @@ figcaption.featured {
   padding-bottom: max(3vw, 20px);
 }
 
-figcaption.featured h3 {
+figcaption.featured a {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+figcaption.featured a h3 {
   font-size: 1vmax;
+
   padding: 0;
 }
 
-figcaption.featured .featured-title {
+figcaption.featured a .featured-title {
   font-size: 2vmax;
   font-weight: bolder;
 }
 
-figcaption.featured .featured-summary {
+figcaption.featured a .featured-summary {
   font-size: 1vmax;
+  font-weight: 500;
 }
 
 .figure-points {

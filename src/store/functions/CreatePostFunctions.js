@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 import uploadToS3 from "./uploadToS3";
@@ -43,15 +44,18 @@ export function Editor({ value, onChange }) {
   );
 }
 
-export async function onSubmit(event, post, content, files, setRedirect) {
+export async function onSubmit(event, post, content, files, router) {
   event.preventDefault();
 
   const image = await uploadToS3("", "", files);
-  console.log(image);
+  const parts = image.split("/");
+  const name = parts[parts.length - 1].split(".");
+  const id = name[0];
   const reqBody = {
     post: post,
     content: content,
     image: image,
+    id: id,
   };
   fetch("/api/savepost", {
     method: "POST",
@@ -61,5 +65,5 @@ export async function onSubmit(event, post, content, files, setRedirect) {
     },
   })
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => data && router.push("/"));
 }

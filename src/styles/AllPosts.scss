@@ -88,12 +88,83 @@ p.recent-info-all time {
   gap: 5px;
   padding-top: 25px;
   display: flex;
+  font-family: $karla;
   font-size: 15px;
+  font-weight: 500;
 }
 
-.page-index-arrow {
-  width: 15px;
-  cursor: pointer;
+.gg-arrow-right-r {
+  background-color: rgba(128, 128, 128, 0.185);
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 19px;
+  height: 19px;
+  border: 2px solid;
+  transform: scale(var(--ggs, 1));
+  border-radius: 4px;
+}
+.gg-arrow-right-r:hover {
+  transform: translateY(-1px);
+}
+.gg-arrow-right-r::after,
+.gg-arrow-right-r::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  right: 4px;
+}
+.gg-arrow-right-r::after {
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  transform: rotate(45deg);
+  bottom: 6px;
+}
+.gg-arrow-right-r::before {
+  width: 10px;
+  height: 2px;
+  bottom: 8px;
+  background: currentColor;
+}
+
+.gg-arrow-left-r {
+  background-color: rgba(128, 128, 128, 0.185);
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 19px;
+  height: 19px;
+  border: 2px solid;
+  transform: scale(var(--ggs, 1));
+  border-radius: 4px;
+}
+.gg-arrow-left-r:hover {
+  transform: translateY(-1px);
+}
+.gg-arrow-left-r::after,
+.gg-arrow-left-r::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  left: 4px;
+}
+.gg-arrow-left-r::after {
+  width: 6px;
+  height: 6px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  transform: rotate(45deg);
+  bottom: 6px;
+}
+.gg-arrow-left-r::before {
+  width: 10px;
+  height: 2px;
+  bottom: 8px;
+  background: currentColor;
 }
 
 @media (min-width: 1040px) and (max-width: 1450px) {

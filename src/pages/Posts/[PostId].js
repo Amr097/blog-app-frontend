@@ -1,22 +1,37 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { postData } from "@/store/data/postsContext";
+import postss from "@/store/data/postFile.json";
 import Header from "@/HomeComponents/Header";
 import Login from "@/HomeComponents/HeaderComponents/AccessBoard";
 
 export default function SinglePost() {
   const [isOpen, setIsOpen] = useState(false);
+  const [post, setPost] = useState(0);
   const router = useRouter();
-  console.log(postData);
+
+  const idParams = router.query.PostId;
+
+  useEffect(() => {
+    postss.forEach((post) => {
+      post.id === idParams ? setPost(post) : null;
+    });
+  }, []);
+
   return (
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <Login />
+      <div tabindex="0" class="menu">
+        <div class="menu-dropdown">
+          <a href="javascript:alert('Dropdown 1')">Save Post</a>
+        </div>
+      </div>
+
       <section id="single-post">
         <div className="post-container">
-          <h1>{postData[0].title}</h1>
-          <h3>{postData[0].summary}</h3>
+          <h1>{post.title}</h1>
+          <h3>{post.summary}</h3>
           <p>
             {" "}
             <a>By Hedwig Potter</a>{" "}
@@ -24,7 +39,7 @@ export default function SinglePost() {
               {format(new Date(), "MMM d, yyy HH:mm")}
             </time>
           </p>
-          <img src={postData[0].image} />
+          <img src={post.image} />
           <p>
             1914 translation by H. Rackham "But I must explain to you how all
             this mistaken idea of denouncing pleasure and praising pain was born

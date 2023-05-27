@@ -2,6 +2,7 @@ import PostSlider from "./PostSlider";
 import RecentPosts from "./RecentPosts";
 import { postData, RecentPostData } from "@/store/data/postsContext";
 import { useEffect } from "react";
+import Footer from "./Footer";
 
 export default function HomePage({ setIsOpen }) {
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function HomePage({ setIsOpen }) {
     >
       <PostSlider postData={postData} />
       <RecentPosts postData={RecentPostData} />
+      <Footer />
     </section>
   );
 }

@@ -1,46 +1,55 @@
 import { format } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { RecentPostData } from "@/store/data/postsContext";
+
 import Header from "@/HomeComponents/Header";
 import Login from "@/HomeComponents/HeaderComponents/AccessBoard";
 import {
   incrementIndex,
   DecrementIndex,
 } from "@/store/functions/AllPostsFunctions";
+import postss from "@/store/data/postFile.json";
 
 export default function AllPosts() {
-  // const [renderIndex, setRenderIndex] = useState({ start: 0, end: 9 });
-  // const [pageIndex, setPageIndex] = useState(1);
+  const [renderIndex, setRenderIndex] = useState({ start: 0, end: 9 });
+  const [CurrentPagePosts, setCurrentPagePosts] = useState([]);
+  const [pageIndex, setPageIndex] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
 
-  // useEffect(() => {
-  //   const index = window.localStorage.getItem("MY_APP_index");
-  //   setPageIndex(parseInt(index) ? parseInt(index) : 1);
+  useEffect(() => {
+    const index = window.localStorage.getItem("MY_APP_index");
+    setPageIndex(parseInt(index) ? parseInt(index) : 1);
 
-  //   setRenderIndex((prev) => {
-  //     for (let i = 1; i < index; i++) {
-  //       prev.start = prev.start + 9;
-  //       prev.end = prev.end + 9;
-  //     }
+    setRenderIndex((prev) => {
+      for (let i = 1; i < index; i++) {
+        prev.start = prev.start + 9;
+        prev.end = prev.end + 9;
+      }
 
-  //     return { start: prev.start, end: prev.end };
-  //   });
-  // }, []);
+      return { start: prev.start, end: prev.end };
+    });
+
+    console.log("hello");
+  }, []);
+
+  useEffect(() => {
+    setCurrentPagePosts(postss.slice(renderIndex.start, renderIndex.end));
+    //console.log("Works");
+  }, [renderIndex]);
 
   return (
     <>
       <Header link="/" isOpen={isOpen} setIsOpen={setIsOpen} />
       <Login />
       <section id="all-posts">
-        {RecentPostData.length > 0
-          ? RecentPostData.map((post, index) => (
+        {postss.length > 0
+          ? CurrentPagePosts.map((post, index) => (
               <div key={index} className="recent-post-all">
                 <div className="recent-image-all">
                   <Link
                     href={{
-                      pathname: `/Posts/${post.image.slice(8)}`,
-                      query: RecentPostData,
+                      pathname: `/Posts/${post.id}`,
+                      query: postss,
                     }}
                   >
                     <img src={post.image} alt="" />
@@ -71,57 +80,39 @@ export default function AllPosts() {
               </div>
             ))
           : null}
-        {/* <div className="page-index">
-          <svg
+        <div className="page-index">
+          <i
             onClick={() =>
               DecrementIndex(
                 pageIndex,
                 setRenderIndex,
                 setPageIndex,
-                RecentPostData
+                postss,
+                setCurrentPagePosts,
+                renderIndex
               )
             }
-            className="page-index-arrow"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2.5"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
-            />
-          </svg>
-
+            class="gg-arrow-left-r"
+          ></i>
           <p>
-            {pageIndex}/{Math.ceil(RecentPostData.length / 9)}
+            {pageIndex}/{Math.ceil(postss.length / 9)}
           </p>
-          <svg
+
+          <i
             onClick={(event) =>
               incrementIndex(
                 pageIndex,
                 setRenderIndex,
                 setPageIndex,
-                RecentPostData,
-                event
+                postss,
+                event,
+                setCurrentPagePosts,
+                renderIndex
               )
             }
-            className="page-index-arrow"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="2.5"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-        </div> */}
+            class="gg-arrow-right-r"
+          ></i>
+        </div>
       </section>
     </>
   );

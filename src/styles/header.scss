@@ -36,7 +36,8 @@
 }
 
 .nav-bar .mid-nav,
-.end-nav {
+.end-nav,
+.logged-end-nav {
   display: flex;
   gap: 29px;
 }
@@ -46,7 +47,7 @@
   align-items: center;
   font-family: $ubuntu;
   font-size: 0.93rem;
-  font-weight: 600;
+  font-weight: 400;
   padding: 4.5% 0.7vw;
   transition: all 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
   border-radius: 0.3rem;
@@ -55,40 +56,48 @@
 
 .nav-icon.write {
   gap: 5px;
-  color: #000000;
   font-family: $ubuntu;
   font-size: 0.93rem;
-  font-weight: 600;
-  padding: 4.5% 0.7vw;
+  font-weight: 400;
   transition: all 0.3s linear;
-  border-radius: 0.3rem;
+  border-radius: 18px;
+  padding: 5px 13px;
   cursor: pointer;
+
+  color: rgb(0, 0, 0);
 }
 
 .nav-icon.write svg {
   height: 22px;
+  color: rgba(0, 0, 0, 0.66);
+  transition: all 0.3s linear;
+}
+
+.nav-icon.write:hover {
+  color: rgb(1, 158, 1);
+  svg {
+    color: rgb(1, 158, 1);
+  }
 }
 
 .nav-icon.sign-up {
   color: white;
-  background-color: black;
+  background-color: rgb(11, 128, 11);
+  border-radius: 18px;
+  padding: 9px 12px;
 }
-.nav-icon.write:hover {
-  color: rgb(35, 134, 53);
-}
+
 .nav-icon.logout:hover {
-  color: rgb(109, 106, 106);
+  color: rgb(141, 138, 138);
 }
 .mid-nav .nav-icon:hover,
-.end-nav.before .nav-icon:hover {
+.end-nav .nav-icon:hover {
   box-shadow: inset 100px 0 0 0 #000000;
   color: white;
 }
 
 .nav-icon.sign-up:hover {
-  box-shadow: inset 100px 0 0 0 #ffffff;
-  color: rgb(0, 0, 0);
-  background-color: #ffffff;
+  box-shadow: inset 100px 0 0 0 rgb(1, 158, 1);
 }
 
 .dropdown {
@@ -116,6 +125,7 @@ a.exit {
 
 ul.dropdown-content {
   opacity: 0;
+  height: 0px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -133,7 +143,8 @@ li a {
 
 @media (max-width: 700px) {
   .nav-bar .mid-nav,
-  .end-nav {
+  .end-nav,
+  .logged-end-nav {
     display: none;
   }
   a.dropdown {
@@ -152,6 +163,7 @@ li a {
   }
   ul.dropdown-content.active {
     opacity: 1;
+    height: auto;
     transform: translateY(0px);
     cursor: pointer;
     pointer-events: all;

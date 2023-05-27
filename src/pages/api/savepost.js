@@ -3,16 +3,17 @@ import path from "path";
 
 function handler(req, res) {
   if (req.method === "POST") {
-    console.log(req.body);
     const title = req.body.post.title;
     const summary = req.body.post.summary;
     const content = req.body.content;
     const image = req.body.image;
+    const id = req.body.id;
     const post = {
       title: title,
       summary: summary,
       content: content,
       image: image,
+      id: id,
     };
     const filePath = path.join(
       process.cwd(),

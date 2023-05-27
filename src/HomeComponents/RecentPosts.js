@@ -1,12 +1,13 @@
 import { format } from "date-fns";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import postss from "@/store/data/postFile.json";
+import { PostRouteId } from "@/store/functions/recentPostsFunctions";
 
 export default function RecentPosts({ postData, postFile }) {
   const [renderIndex, setRenderIndex] = useState({ start: 0, end: 5 });
   const [posts, setPosts] = useState({});
-  console.log(postss);
+
   return (
     <section id="recent-posts">
       <h3 className="recent-section-title">Recent Owl Posts</h3>
@@ -20,18 +21,15 @@ export default function RecentPosts({ postData, postFile }) {
                     <div className="recent-image">
                       <Link
                         href={{
-                          pathname: `/Posts/${post.image.slice(8)}`,
+                          pathname: `/Posts/${post.id}`,
                           query: postss,
                         }}
                       >
                         <img src={post.image} alt="" />
                       </Link>
-                    </div>
-
-                    <article className="recent-content">
                       <Link
                         href={{
-                          pathname: `/Posts/${post.image.slice(8)}`,
+                          pathname: `/Posts/${post.id}`,
                           query: postss,
                         }}
                       >
@@ -39,6 +37,9 @@ export default function RecentPosts({ postData, postFile }) {
 
                         <p className="recent-summary">{post.summary}</p>
                       </Link>
+                    </div>
+
+                    <article className="recent-content">
                       <p className="recent-info">
                         {" "}
                         <a className="recent-author">By Hedwig Potter</a>{" "}
@@ -55,7 +56,7 @@ export default function RecentPosts({ postData, postFile }) {
 
       <div className="btn-container">
         <button>
-          <a href="/Posts/AllPosts">View More</a>
+          <a href="/Posts/AllPosts">View More..</a>
         </button>
       </div>
     </section>

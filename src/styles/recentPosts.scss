@@ -14,7 +14,7 @@ div.recent-post-container div.recent-post {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between;
   max-width: max(25vw, 180px);
 }
 
@@ -33,6 +33,11 @@ div.recent-post div.recent-image a {
   position: relative;
 }
 
+div.recent-post div.recent-image p {
+  font-weight: lighter;
+  padding-top: 6px;
+}
+
 div.recent-post article.recent-content {
   display: flex;
   flex-direction: column;
@@ -44,9 +49,10 @@ div.recent-post article.recent-content a p {
   font-weight: lighter;
 }
 
-article.recent-content h2 {
+div.recent-image h2 {
   font-size: max(1.2vw, 15px);
   font-weight: bolder;
+  padding-top: 6.8px;
 }
 
 article.recent-content p.recent-info {

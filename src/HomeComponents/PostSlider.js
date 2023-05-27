@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import postss from "@/store/data/postFile.json";
 import {
   TimerincrementIndex,
   incrementIndex,
@@ -48,7 +50,14 @@ export default function PostSlider({ postData }) {
         {postData.map((post, index) => {
           return (
             <div className="image-container" key={index}>
-              <img className="featured-image" src={post.image} />
+              <Link
+                href={{
+                  pathname: `/Posts/${post.id}`,
+                  query: postss,
+                }}
+              >
+                <img className="featured-image" src={post.image} />
+              </Link>
 
               <div className="figure-points">
                 {postData.map((post, postIndex) => (
@@ -64,9 +73,16 @@ export default function PostSlider({ postData }) {
                 ))}
               </div>
               <figcaption className="featured">
-                <h3>Featured</h3>
-                <h1 className="featured-title">{post.title}</h1>
-                <p className="featured-summary">{post.summary}</p>
+                <Link
+                  href={{
+                    pathname: `/Posts/${post.id}`,
+                    query: postss,
+                  }}
+                >
+                  <h3>Featured</h3>
+                  <h1 className="featured-title">{post.title}</h1>
+                  <p className="featured-summary">{post.summary}</p>
+                </Link>
               </figcaption>
             </div>
           );

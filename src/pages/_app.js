@@ -6,6 +6,7 @@ import "@/styles/singlePost.scss";
 import "@/styles/AllPosts.scss";
 import "@/styles/accessBoard.scss";
 import "@/styles/createPost.scss";
+import "@/styles/footer.scss";
 import { MenuContextProvider } from "@/store/MenuContext";
 // pages/_app.js
 import { UserProvider } from "@auth0/nextjs-auth0/client";

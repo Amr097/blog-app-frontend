@@ -58,7 +58,7 @@ export default function Header({ isOpen, setIsOpen }) {
         )}
 
         {checker && (
-          <div className="end-nav">
+          <div className="logged-end-nav">
             <a className="nav-icon write" href="/create-post">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

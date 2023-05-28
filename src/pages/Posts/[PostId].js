@@ -2,11 +2,14 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import postss from "@/store/data/postFile.json";
+import savedPosts from "@/store/data/SavedPosts.json";
 import Header from "@/HomeComponents/Header";
 import Login from "@/HomeComponents/HeaderComponents/AccessBoard";
+import { SavePost, unSavePost } from "@/store/functions/singlePostFunctions";
 
 export default function SinglePost() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const [post, setPost] = useState(0);
   const router = useRouter();
 
@@ -16,15 +19,35 @@ export default function SinglePost() {
     postss.forEach((post) => {
       post.id === idParams ? setPost(post) : null;
     });
+    savedPosts.forEach((post) => {
+      if (post.id === idParams) {
+        setIsSaved(true);
+      }
+      console.log(idParams);
+      console.log(post);
+    });
   }, []);
-
   return (
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <Login />
       <div tabindex="0" class="menu">
         <div class="menu-dropdown">
-          <a href="javascript:alert('Dropdown 1')">Save Post</a>
+          {isSaved ? (
+            <a
+              href="javascript:void(0)"
+              onClick={() => unSavePost(idParams, setIsSaved)}
+            >
+              Remove
+            </a>
+          ) : (
+            <a
+              href="javascript:void(0)"
+              onClick={() => SavePost(idParams, setIsSaved)}
+            >
+              Save Post
+            </a>
+          )}
         </div>
       </div>
 

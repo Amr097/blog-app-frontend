@@ -28,8 +28,6 @@ export default function AllPosts() {
 
       return { start: prev.start, end: prev.end };
     });
-
-    console.log("hello");
   }, []);
 
   useEffect(() => {
@@ -59,7 +57,7 @@ export default function AllPosts() {
                 <article className="recent-content-all">
                   <div className="top-container">
                     <figure className="all-posts-author">
-                      <img className="author-image" src={post.image} />
+                      <img className="author-image" src="/images/owl (1).png" />
                       <figcaption>
                         {" "}
                         <a className="recent-author">Hedwig Potter</a>{" "}

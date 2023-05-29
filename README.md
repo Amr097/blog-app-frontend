@@ -5,6 +5,8 @@ Front-end for a blogging platform built with React Nextj && Scss.
 ![2023-05-29 (5)](https://github.com/Amr097/blog-app-frontend/assets/127849429/c4269132-10d6-4f06-9bd4-8ce09c3f061c)
 ![2023-05-29 (6)](https://github.com/Amr097/blog-app-frontend/assets/127849429/ff8ef460-83c2-4cee-aaa9-0042afacf624)
 ![2023-05-29 (4)](https://github.com/Amr097/blog-app-frontend/assets/127849429/c067ead5-6705-4e03-8f1c-cafbd634f173)
+![screencapture-localhost-3000-Posts-AllPosts-2023-05-29-12_35_06](https://github.com/Amr097/blog-app-frontend/assets/127849429/67e73684-e85a-4d6c-a124-e058da260e64)
+![2023-05-29 (7)](https://github.com/Amr097/blog-app-frontend/assets/127849429/4891a35c-22db-41d6-9ede-2a36ce164f53)
 
 ## Features
 

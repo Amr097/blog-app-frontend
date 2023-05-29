@@ -12,20 +12,6 @@ const menuHandler = (event) => {
   }
 };
 
-// const emailSubmitHandler = async (
-//   event,
-//   usernameRef,
-//   passwordRef,
-//   emailCredentialsHandler
-// ) => {
-//   const usernameValue = usernameRef.current.value;
-//   const passwordValue = passwordRef.current.value;
-
-//   await emailCredentialsHandler.userInfoHandler({
-//     username: usernameValue,
-//     password: passwordValue,
-//   });
-// };
 
 const submitFormHandler = (event, authenticateUser, router) => {
   closeMenu();
